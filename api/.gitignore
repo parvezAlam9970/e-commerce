@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+
+
+# .env
+# logs/*
+logs/.*-audit.json
+logs/app.*.log
+logs/app.*.log.gz
