@@ -24,21 +24,21 @@ const SubCategory = ({selected , setSelected}) => {
     const addNewModalRef = useRef();
 
     const columns = [
-        {
-            title: 'Image',
-            dataIndex: 'image',
-            render: (picture) => {
+        // {
+        //     title: 'Image',
+        //     dataIndex: 'image',
+        //     render: (picture) => {
 
-                return <Image
-                    src={picture}
-                    width={100}
-                    height={50}
-                    style={{objectFit : "contain"}}
+        //         return <Image
+        //             src={picture}
+        //             width={100}
+        //             height={50}
+        //             style={{objectFit : "contain"}}
 
-                />
-            }
+        //         />
+        //     }
 
-        },
+        // },
         {
             title: 'Category',
             dataIndex: 'name',
@@ -275,7 +275,7 @@ console.log(data)
                                     </Select>
                                 </Form.Item>
                             </Col>
-                            <Col span={24}>
+                            {/* <Col span={24}>
                                 <Form.Item
                                     name="thumbnail"
                                     label="Thumbnail"
@@ -291,7 +291,7 @@ console.log(data)
                                         }
                                     />
                                 </Form.Item>
-                            </Col>
+                            </Col> */}
                         </Row>
                     </Form>
                 </Spin>

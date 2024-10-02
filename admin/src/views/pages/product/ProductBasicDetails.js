@@ -79,7 +79,22 @@ const ProductBasicDetails = (props) => {
                 />
               </Form.Item>
             </Col>
+        
+
             <Col span={12}>
+              <Form.Item label="Brief Description" required>
+                <Input
+                  placeholder="Brief Description"
+                  value={data?.briefDescription}
+                  onChange={(e) => {
+                    handleChange({ briefDescription: e.target.value });
+                  }}
+                />
+              </Form.Item>
+            </Col>
+
+
+            <Col span={6}>
               <Form.Item label="Product Code" required>
                 <Input
                   placeholder="Product Code"
@@ -91,15 +106,23 @@ const ProductBasicDetails = (props) => {
               </Form.Item>
             </Col>
 
-            <Col span={12}>
-              <Form.Item label="Brief Description" required>
-                <Input
-                  placeholder="Brief Description"
-                  value={data?.briefDescription}
+            
+            <Col span={6}>
+              <Form.Item label="Status" required>
+                <Select
+                  value={data?.status}
+                  placeholder="Choose"
                   onChange={(e) => {
-                    handleChange({ briefDescription: e.target.value });
+                    handleChange({ status: e });
                   }}
-                />
+                >
+                    <Select.Option value={true}>
+                      Active
+                    </Select.Option>
+                    <Select.Option  value={false}>
+                      InActive
+                    </Select.Option>
+                </Select>
               </Form.Item>
             </Col>
 
