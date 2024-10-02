@@ -10,9 +10,9 @@ export default class serviceCategory {
     static list(data) {
         return axios.get(this.baseURL + "/list", { params: data });
     }
-    // static listWithChildren(data) {
-    //     return axios.get(this.baseURL + "/list-all", { params: data });
-    // }
+    static listWithChildren(data) {
+        return axios.get(this.baseURL + "/list-all", { params: data });
+    }
     static save(data, query) {
         return axios.post(this.baseURL + "/save", data, { params: query });
     }
