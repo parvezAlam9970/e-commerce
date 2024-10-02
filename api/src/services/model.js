@@ -3,6 +3,8 @@ const productModel = require("../models/model");
 const { clearSearch } = require("../utilities/Helper");
 const { paginationAggregate } = require("../utilities/pagination");
 
+const { ObjectId } = require("mongoose").Types; // Import ObjectId from mongoose
+
 class ModelService {
   static async save(data) {
     try {
@@ -42,6 +44,10 @@ class ModelService {
         isDeleted: false,
       };
 
+      if (query.brandId) {
+        search.brandId = ObjectId(query.brandId);
+      }
+
       clearSearch(search);
       const $aggregate = [
         { $match: search },
@@ -52,7 +58,6 @@ class ModelService {
             localField: "brandId",
             foreignField: "_id",
             as: "brandDetails",
-           
           },
         },
         {
@@ -64,11 +69,11 @@ class ModelService {
             status: 1,
             name: 1,
             slug: 1,
-            brandDetails  :{
+            brandDetails: {
               name: 1,
               slug: 1,
               status: 1,
-            }
+            },
           },
         },
       ];
@@ -82,14 +87,14 @@ class ModelService {
     }
   }
 
-
-
-
   static async delete(ids) {
     const response = { status: false, ids: [] };
     try {
       if (Array.isArray(ids)) {
-        await productModel.updateMany({ _id: { $in: ids } }, { isDeleted: true });
+        await productModel.updateMany(
+          { _id: { $in: ids } },
+          { isDeleted: true }
+        );
       } else if (typeof ids === "string") {
         await productModel.updateOne({ _id: ids }, { isDeleted: true });
         response.id = ids;

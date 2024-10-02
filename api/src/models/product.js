@@ -36,12 +36,19 @@ const productSchema = new Schema(
       ref: "model",
     },
 
+    brandId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "brand",
+    },
+
     categoryIds: [[{ type: mongoose.Schema.Types.ObjectId, ref: "category" }]],
 
-    searchCategoryIds: [{
+    searchCategoryIds: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "category"
-    }],
+        ref: "category",
+      },
+    ],
 
     // images: {
     //   type: String,
@@ -59,6 +66,15 @@ const productSchema = new Schema(
       type: String,
     },
 
+    briefDescription: {
+      type: String,
+    },
+
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+
     status: {
       type: Boolean,
       default: true,
@@ -69,27 +85,25 @@ const productSchema = new Schema(
   }
 );
 
+productSchema.pre("save", function (next) {
+  const doc = this;
+  if (!doc.isModified("categoryIds")) {
+    return next();
+  }
 
-
-productSchema.pre('save', function (next) {
-    const doc = this;
-    if (!doc.isModified('categoryIds')) {
-        return next();
-    }
-  
-    try {
-        const flattenedIds = doc.categoryIds.reduce((acc, innerArray) => {
-            innerArray.forEach(id => {
-                acc.add(id.toString());
-            });
-            return acc;
-        }, new Set());
-        const uniqueIds = Array.from(flattenedIds);
-        doc.searchCategoryIds = uniqueIds;
-        return next();
-    } catch (error) {
-        return next(error)
-    }
+  try {
+    const flattenedIds = doc.categoryIds.reduce((acc, innerArray) => {
+      innerArray.forEach((id) => {
+        acc.add(id.toString());
+      });
+      return acc;
+    }, new Set());
+    const uniqueIds = Array.from(flattenedIds);
+    doc.searchCategoryIds = uniqueIds;
+    return next();
+  } catch (error) {
+    return next(error);
+  }
 });
 
 const productModel = mongoose.model("product", productSchema);

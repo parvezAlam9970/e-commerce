@@ -8,7 +8,9 @@ const validations = {
     check("slug").trim().notEmpty().withMessage("Please provide product slug"),
 
     check("productCode").trim().notEmpty().withMessage("Please provide product code"),
+    check("briefDescription").trim().notEmpty().withMessage("Please provide  Breif Description"),
 
+   
     // check("isAccessory")
     //   .isBoolean()
     //   .withMessage("Please specify if the product is an accessory"),

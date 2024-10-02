@@ -8,15 +8,15 @@ class CategoryService {
     try {
       const response = { data: {}, status: false };
       let docData = data._id
-      ? await categoryModel.findById(data._id)
-      : new categoryModel();
-      console.log(docData)
+        ? await categoryModel.findById(data._id)
+        : new categoryModel();
+      console.log(docData);
       docData.name = data.name;
       docData.slug = data.slug;
-      docData.image = data.image;
+      docData.image = data.image || null;
       docData.status = data.status;
 
-      if(data.parentId){
+      if (data.parentId) {
         docData.parentId = data.parentId;
       }
 
@@ -101,8 +101,47 @@ class CategoryService {
     }
   }
 
+  static async buildNestedStructure(parentId) {
+    const search = {
+      parentId: parentId ? Types.ObjectId(parentId) : "",
+    };
 
+    clearSearch(search);
+    const children = await categoryModel.aggregate([
+      {
+        $match: search,
+      },
+    ]);
+    const resolvedChildren = await Promise.all(
+      children.map(async (child) => ({
+        value: child._id,
+        label: child.name,
+        children: child.length
+          ? await this.buildNestedStructure(child._id)
+          : [],
+      }))
+    );
 
+    return resolvedChildren;
+  }
+
+  static async listAllWithParentAndChild() {
+    let response = { data: [], status: false };
+    const topParents = await categoryModel.find({
+      isDeleted: false,
+      parentId: { $exists: false },
+    });
+    const result = await Promise.all(
+      topParents.map(async (parent) => ({
+        value: parent._id,
+        label: parent.name,
+        children: await this.buildNestedStructure(parent._id, true),
+      }))
+    );
+    response.data = result;
+    response.status = true;
+    return response;
+  } // admin
 
   static async delete(ids) {
     console.log(ids);
@@ -110,16 +149,19 @@ class CategoryService {
     try {
       // Check if ids are provided as an array or a single id
       const categoryIds = Array.isArray(ids) ? ids : [ids];
-  
+
       // Soft delete the parent categories by setting isDeleted to true
-      await categoryModel.updateMany({ _id: { $in: categoryIds } }, { isDeleted: true });
-  
+      await categoryModel.updateMany(
+        { _id: { $in: categoryIds } },
+        { isDeleted: true }
+      );
+
       // Find and soft delete child categories where parentId matches the deleted categories
       await categoryModel.updateMany(
         { parentId: { $in: categoryIds } },
         { isDeleted: true }
       );
-  
+
       response.status = true;
       response.ids = categoryIds;
       return response;
@@ -130,8 +172,3 @@ class CategoryService {
 }
 
 module.exports = CategoryService;
-
-
-
-
-

@@ -6,7 +6,7 @@ const router = Router({ mergeParams: true });
 
 router.post("/save", validation.productValidation, controller.save);
 
-// router.get('/list',  controller.list);
+router.get('/list',  controller.list);
 // router.post('/delete',  controller.delete);
 
 module.exports = router;

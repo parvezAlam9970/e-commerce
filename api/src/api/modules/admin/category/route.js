@@ -9,6 +9,8 @@ router.post('/save', validation.categoryValidation , controller.createCategory);
 
 
 router.get('/list',  controller.list);
+router.get('/list-all',  controller.listAllWithParentAndChild);
+
 router.post('/delete',  controller.delete);
 
 
