@@ -38,80 +38,80 @@ class productVarientService {
         }
       }
 
-  //   static async list(query = {}) {
-  //     const $extra = { page: query.page, limit: query.limit, isAll: query.isAll };
-  //     let response = { data: [], extra: { ...$extra }, status: false };
+    static async list(query = {}) {
+      const $extra = { page: query.page, limit: query.limit, isAll: query.isAll };
+      let response = { data: [], extra: { ...$extra }, status: false };
 
-  //     try {
-  //       const search = {
-  //         name: { $regex: new RegExp(query.name || ""), $options: "i" },
-  //         slug: query.slug
-  //           ? Array.isArray(query.slug)
-  //             ? { $in: query.slug }
-  //             : query.slug
-  //           : "",
+      try {
+        const search = {
+          name: { $regex: new RegExp(query.name || ""), $options: "i" },
+          slug: query.slug
+            ? Array.isArray(query.slug)
+              ? { $in: query.slug }
+              : query.slug
+            : "",
 
-  //         isDeleted: false,
-  //       };
+          isDeleted: false,
+        };
 
-  //       clearSearch(search);
-  //       const $aggregate = [
-  //         { $match: search },
-  //         { $sort: { _id: -1 } },
-  //         {
-  //           $lookup: {
-  //             from: "brands",
-  //             localField: "brandId",
-  //             foreignField: "_id",
-  //             as: "brandDetails",
+        clearSearch(search);
+        const $aggregate = [
+          { $match: search },
+          { $sort: { _id: -1 } },
+          // {
+          //   $lookup: {
+          //     from: "brands",
+          //     localField: "brandId",
+          //     foreignField: "_id",
+          //     as: "brandDetails",
 
-  //           },
-  //         },
-  //         {
-  //           $unwind: "$brandDetails",
-  //         },
-  //         {
-  //           $project: {
-  //             _id: 1,
-  //             status: 1,
-  //             name: 1,
-  //             slug: 1,
-  //             brandDetails  :{
-  //               name: 1,
-  //               slug: 1,
-  //               status: 1,
-  //             }
-  //           },
-  //         },
-  //       ];
+          //   },
+          // },
+          // {
+          //   $unwind: "$brandDetails",
+          // },
+          // {
+          //   $project: {
+          //     _id: 1,
+          //     status: 1,
+          //     name: 1,
+          //     slug: 1,
+          //     brandDetails  :{
+          //       name: 1,
+          //       slug: 1,
+          //       status: 1,
+          //     }
+          //   },
+          // },
+        ];
 
-  //       response = await paginationAggregate(productModel, $aggregate, $extra);
+        response = await paginationAggregate(productVarientModel, $aggregate, $extra);
 
-  //       response.status = true;
-  //       return response;
-  //     } catch (err) {
-  //       throw err;
-  //     }
-  //   }
+        response.status = true;
+        return response;
+      } catch (err) {
+        throw err;
+      }
+    }
 
-  //   static async delete(ids) {
-  //     const response = { status: false, ids: [] };
-  //     try {
-  //       if (Array.isArray(ids)) {
-  //         await productModel.updateMany({ _id: { $in: ids } }, { isDeleted: true });
-  //       } else if (typeof ids === "string") {
-  //         await productModel.updateOne({ _id: ids }, { isDeleted: true });
-  //         response.id = ids;
-  //       }
+    // static async delete(ids) {
+    //   const response = { status: false, ids: [] };
+    //   try {
+    //     if (Array.isArray(ids)) {
+    //       await productModel.updateMany({ _id: { $in: ids } }, { isDeleted: true });
+    //     } else if (typeof ids === "string") {
+    //       await productModel.updateOne({ _id: ids }, { isDeleted: true });
+    //       response.id = ids;
+    //     }
 
-  //       response.status = true;
-  //       response.ids = ids;
+    //     response.status = true;
+    //     response.ids = ids;
 
-  //       return response;
-  //     } catch (err) {
-  //       throw err;
-  //     }
-  //   }
+    //     return response;
+    //   } catch (err) {
+    //     throw err;
+    //   }
+    // }
 }
 
 module.exports = productVarientService;

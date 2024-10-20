@@ -323,7 +323,9 @@ const AddForm = forwardRef((props, ref) => {
     {
       key: "2",
       label: <div>Product Variant</div>,
-      children: <Productvariant  {...{  data,setData, handleChange, ajxRequesting }}/>,
+      children: <Productvariant  productDetails={data}   />,
+      disabled: data?._id ? false : true
+
     },
   ];
 

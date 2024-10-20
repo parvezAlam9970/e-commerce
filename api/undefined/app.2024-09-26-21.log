@@ -1,9 +1,0 @@
-{"@timestamp":"2024-09-26 21:54:04","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-09-26 21:54:04"}
-{"@timestamp":"2024-09-26 21:54:04","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-09-26 21:54:04"}
-{"@timestamp":"2024-09-26 21:54:04","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-09-26 21:54:04"}
-{"@timestamp":"2024-09-26 21:54:04","level":"info","message":"✌️ Express loaded","timestamp":"2024-09-26 21:54:04"}
-{"@timestamp":"2024-09-26 21:54:05","level":"info","message":"Database Connected","timestamp":"2024-09-26 21:54:05"}
-{"@timestamp":"2024-09-26 21:56:17","level":"error","message":"User does not exist","timestamp":"2024-09-26 21:56:17"}
-{"@timestamp":"2024-09-26 21:56:17","level":"error","message":"AuthMiddleware Failed : ","stack":"Error\n    at validateToken (D:\\zip files\\e-commerce\\api\\src\\api\\middlewares\\auth.js:31:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-09-26 21:56:17"}
-{"@timestamp":"2024-09-26 21:56:17","level":"error","message":"User does not exist","timestamp":"2024-09-26 21:56:17"}
-{"@timestamp":"2024-09-26 21:56:17","level":"error","message":"AuthMiddleware Failed : ","stack":"Error\n    at validateToken (D:\\zip files\\e-commerce\\api\\src\\api\\middlewares\\auth.js:31:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-09-26 21:56:17"}
