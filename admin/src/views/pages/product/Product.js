@@ -66,7 +66,7 @@ const Product = () => {
 
     {
       title: "Name",
-      dataIndex: "name",
+      dataIndex: "brandName",
     },
 
     {
@@ -74,21 +74,21 @@ const Product = () => {
       dataIndex: "productCode",
     },
 
-    {
-      title: "Category",
-      dataIndex: "categoryDetails",
-      render: (v, row) => (
-        <Space>
-          <Tag color="red">{v?.map((elm, i) => elm?.name)}</Tag>
-        </Space>
-      ),
-    },
+    // {
+    //   title: "Category",
+    //   dataIndex: "categoryDetails",
+    //   render: (v, row) => (
+    //     <Space>
+    //       <Tag color="red">{v?.map((elm, i) => elm?.name)}</Tag>
+    //     </Space>
+    //   ),
+    // },
 
     {
       title: "Brand",
       render: (v, row) => (
         <>
-          <Tag style={{ fontWeight: 700 }}>{row?.brandDetails.name}</Tag>
+          <Tag style={{ fontWeight: 700 }}>{row?.brandName}</Tag>
         </>
       ),
     },
@@ -96,7 +96,7 @@ const Product = () => {
       title: "Model",
       render: (v, row) => (
         <>
-          <Tag style={{ fontWeight: 700 }}>{row?.modelDetails.name}</Tag>
+          <Tag style={{ fontWeight: 700 }}>{row?.modelName}</Tag>
         </>
       ),
     },

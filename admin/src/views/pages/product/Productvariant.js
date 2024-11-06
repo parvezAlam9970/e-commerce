@@ -1,10 +1,12 @@
-import { Button, Col, Form, Image, Input, Modal, Popconfirm, Row, Select, Spin, Table, Tag } from 'antd';
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import { Button, Col, Form, Image, Input, message, Modal, Popconfirm, Row, Select, Spin, Table, Tag } from 'antd';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { DeleteOutlined, EditOutlined, LoadingOutlined, PlusOutlined, UploadOutlined, CloseOutlined } from '@ant-design/icons';
 
 import Pagination from '../../components/Pagination';
 import UploadImage from '../../../utils/UploadImage';
 import util from '../../../utils/util';
+import axiosInstance from '../../../utils/axios';
+import ProductService from '../../../services/product';
 
 
 const Productvariant = ({productDetails}) => {
@@ -96,6 +98,26 @@ const tableProps = {
 };
 
 
+const list = async () => {
+    setLoading(true);
+    try {
+        const response = await ProductService.vatiantList(qData) ;
+        setData(response.data);
+        setLoading(false);
+    } catch (error) {
+        console.error(error);
+        setLoading(false);
+    }
+}
+useEffect(()=>{
+
+
+    list()
+} , [])
+
+console.log(data)
+
+
   return (
     <>
        <Table
@@ -105,7 +127,7 @@ const tableProps = {
                 dataSource={data.length ? data : []}
             // scroll={{ y: 'calc(100vh - 340px)', x: 'calc(100vw - 387px)' }}
             />
-                        {/* <AddForm ref={addNewModalRef} {...{ list, productDetails, color, size }} /> */}
+                        <AddForm ref={addNewModalRef} {...{ list, productDetails }} />
 
     </>
   )
@@ -190,17 +212,17 @@ const AddForm = forwardRef((props, ref) => {
 
   const save = () => {
       setAjxRequesting(true);
-    //   service.save({ ...data }).then((res) => {
-    //       message.success(res.message);
-    //       setData({ ...res.data })
-    //       list();
-    //       setOpen(false);
-    //   }
-    //   ).catch(err => {
-    //       message.error(err.message);
-    //   }).finally(() => {
-    //       setAjxRequesting(false);
-    //   });
+      ProductService.vatiantSave({ ...data }).then((res) => {
+          message.success(res.message);
+          setData({ ...res.data })
+          list();
+          setOpen(false);
+      }
+      ).catch(err => {
+          message.error(err.message);
+      }).finally(() => {
+          setAjxRequesting(false);
+      });
   }
 
   return (
@@ -224,82 +246,28 @@ const AddForm = forwardRef((props, ref) => {
               <Spin spinning={ajxRequesting} indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}>
                   <Form layout="vertical">
                       <Row gutter={[12, 2]}>
-                          {/* <Col span={6}>
+                         <Col span={6}>
                               <Form.Item label="Choose Color" required>
-                                  <Select value={data.colorId} onChange={v => { handleChange({ colorId: v }) }}
+                                  <Select value={data.colourCode} onChange={v => { handleChange({ colourCode: v }) }}
                                       filterOption={(input, option) => {
                                           return (
                                               option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                           );
                                       }}
                                       options={
-                                          color.map(v => (
+                                        ColorOptions?.map(v => (
                                               {
-                                                  value: v._id,
-                                                  label: v.name,
+                                                  value: v.value,
+                                                  label: v.label,
                                               }
                                           ))
                                       } >
                                   </Select>
                               </Form.Item>
                           </Col>
-                          <Col span={6}>
-                              <Form.Item label="Choose Size" required>
-                                  <Select value={data.sizeId} onChange={v => { handleChange({ sizeId: v }) }}
-                                      filterOption={(input, option) => {
-                                          return (
-                                              option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                          );
-                                      }}
-                                      options={
-                                          size.map(v => (
-                                              {
-                                                  value: v._id,
-                                                  label: v.name,
-                                              }
-                                          ))
-                                      } >
-                                  </Select>
-                              </Form.Item>
-                          </Col> */}
-                          <Col span={6}>
-                              <Form.Item label="Choose Color" required>
-                                  <Select value={data.colorId} onChange={v => { handleChange({ colorId: v }) }}
-                                      filterOption={(input, option) => {
-                                          return (
-                                              option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                          );
-                                      }}
-                                      options={
-                                          color.map(v => (
-                                              {
-                                                  value: v._id,
-                                                  label: v.name,
-                                              }
-                                          ))
-                                      } >
-                                  </Select>
-                              </Form.Item>
-                          </Col>
-                          <Col span={6}>
-                              <Form.Item label="Choose Size" required>
-                                  <Select value={data.sizeId} onChange={v => { handleChange({ sizeId: v }) }}
-                                      filterOption={(input, option) => {
-                                          return (
-                                              option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                          );
-                                      }}
-                                      options={
-                                          size.map(v => (
-                                              {
-                                                  value: v._id,
-                                                  label: v.length + " X " + v.breadth + " " + v.dimension,
-                                              }
-                                          ))
-                                      } >
-                                  </Select>
-                              </Form.Item>
-                          </Col>
+                         
+                         
+
                           <Col span={6}>
                               <Form.Item label="Price" required>
                                   <Input prefix="₹ " placeholder="xxx" value={parseFloat(data.price)?.toLocaleString('en-IN') || 0} onChange={e => { handleChange({ price: util.handleFloat(e.target.value) }) }} />
@@ -370,3 +338,48 @@ const AddForm = forwardRef((props, ref) => {
       </>
   );
 });
+
+
+const ColorOptions = [
+    {
+      "label": "Red",
+      "value": "#FF0000",
+      "displayColor": "#FF0000"
+    },
+    {
+      "label": "Green",
+      "value": "#00FF00",
+      "displayColor": "#00FF00"
+    },
+    {
+      "label": "Blue",
+      "value": "#0000FF",
+      "displayColor": "#0000FF"
+    },
+    {
+      "label": "Yellow",
+      "value": "#FFFF00",
+      "displayColor": "#FFFF00"
+    },
+    {
+      "label": "Orange",
+      "value": "#FFA500",
+      "displayColor": "#FFA500"
+    },
+    {
+      "label": "Purple",
+      "value": "#800080",
+      "displayColor": "#800080"
+    },
+    {
+      "label": "Black",
+      "value": "#000000",
+      "displayColor": "#000000"
+    },
+    {
+      "label": "White",
+      "value": "#FFFFFF",
+      "displayColor": "#FFFFFF"
+    }
+  ]
+  

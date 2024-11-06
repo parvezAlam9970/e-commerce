@@ -15,6 +15,7 @@ const ProductBasicDetails = (props) => {
   const [brand, setBrand] = useState([]);
   const [category, setCategory] = useState([]);
 
+  console.log(brand)
   async function modelList(brandId) {
     try {
       let res = await brandAndModel.list({ brandId });
@@ -129,7 +130,7 @@ const ProductBasicDetails = (props) => {
             <Col span={8}>
               <Form.Item label="Brand" required>
                 <Select
-                  value={data?.brandDetails?.name}
+                  value={data?.brandName}
                   placeholder="Choose"
                   onChange={(e) => {
                     handleChange({ brandId: e });
@@ -147,7 +148,7 @@ const ProductBasicDetails = (props) => {
             <Col span={8}>
               <Form.Item label="Model" required>
                 <Select
-                  value={data?.modelDetails?.name}
+                  value={data?.modelName}
                   placeholder="Choose"
                   onChange={(e) => {
                     handleChange({ modelId: e });

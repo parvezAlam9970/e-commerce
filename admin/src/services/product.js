@@ -3,7 +3,7 @@ import axios from "../utils/axios";
 export default class ProductService {
 
     static baseURL = 'product';
-    // static brandUrl = 'brand';
+    static variantUrl = 'product-varient';
 
     static list(data) {
         return axios.get(this.baseURL + '/list', { params: data });
@@ -15,11 +15,13 @@ export default class ProductService {
     //     return axios.post(this.baseURL + '/delete', { ids: id });
     // }
 
+    static vatiantList(data) {
+        return axios.get(this.variantUrl + '/list', { params: data });
+    }
 
-
-    // static brandList(data) {
-    //     return axios.get(this.brandUrl + '/list', { params: data });
-    // }
+    static vatiantSave(data) {
+        return axios.post(this.variantUrl + '/save', data );
+    }
 
     
     // static branddelete(id) {
