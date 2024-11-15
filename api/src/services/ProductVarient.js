@@ -45,13 +45,13 @@ class productVarientService {
   static async list(query = {}) {
     const $extra = { page: query.page, limit: query.limit, isAll: query.isAll };
     let response = { data: [], extra: { ...$extra }, status: false };
-
+console.log(query)
     try {
       const search = {
         isDeleted: false,
-        ...(query?.id &&
-          mongoose.Types.ObjectId.isValid(query.id) && {
-            productId: mongoose.Types.ObjectId(query.id),
+        ...(query?.productId &&
+          mongoose.Types.ObjectId.isValid(query.productId) && {
+            productId: mongoose.Types.ObjectId(query.productId),
           }),
       };
       console.log(query, search);

@@ -289,24 +289,145 @@ class productService {
     }
   }
 
-  // static async delete(ids) {
-  //   const response = { status: false, ids: [] };
-  //   try {
-  //     if (Array.isArray(ids)) {
-  //       await productModel.updateMany({ _id: { $in: ids } }, { isDeleted: true });
-  //     } else if (typeof ids === "string") {
-  //       await productModel.updateOne({ _id: ids }, { isDeleted: true });
-  //       response.id = ids;
-  //     }
+  static async productDetails(query) {
+    let response = { status: false, data: [] };
+    const $extra = { page: query.page, limit: query.limit, isAll: query.isAll };
+    try {
+      let search = {
+        slug: query.slug,
+        isDeleted: false,
+      };      
 
-  //     response.status = true;
-  //     response.ids = ids;
 
-  //     return response;
-  //   } catch (err) {
-  //     throw err;
-  //   }
-  // }
+      const $aggregate = [
+        { $match: search },
+        { $sort: { _id: -1 } },
+        {
+          $lookup: {
+            from: "models",
+            localField: "modelId",
+            foreignField: "_id",
+            as: "modelDetails",
+            pipeline: [
+              {
+                $project: {
+                  name: 1,
+                  brandId: 1,
+                },
+              },
+            ],
+          },
+        },
+        {
+          $unwind: {
+            path: "$modelDetails",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+
+        {
+          $lookup: {
+            from: "brands",
+            localField: "modelDetails.brandId",
+            foreignField: "_id",
+            as: "brandDetails",
+            pipeline: [
+              {
+                $project: {
+                  name: 1,
+                },
+              },
+            ],
+          },
+        },
+        {
+          $unwind: {
+            path: "$brandDetails",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+
+        {
+          $lookup: {
+            from: "categories",
+            let: {
+              categoryId: {
+                $arrayElemAt: [{ $arrayElemAt: ["$categoryIds", 0] }, 0],
+              },
+            },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$_id", "$$categoryId"],
+                  },
+                },
+              },
+              {
+                $project: {
+                  name: 1,
+                  slug: 1,
+                },
+              },
+            ],
+            as: "category",
+          },
+        },
+
+        {
+          $unwind: {
+            path: "$category",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
+            from: "productvarients",
+            localField: "_id",
+            foreignField: "productId",
+            as: "productDetails",
+            pipeline: [
+              {
+                $match: {
+                  isDeleted: false,
+                },
+              },
+             
+            ],
+          },
+        },
+
+        // {
+        //   $unwind: {
+        //     path: "$productDetails",
+        //     preserveNullAndEmptyArrays: true,
+        //   },
+        // },
+
+        {
+          $project: {
+            modelName: "$modelDetails.name",
+            brandName: "$brandDetails.name",
+            name: 1,
+            slug: 1,
+            productCode: 1,
+            status: 1,
+            briefDescription: 1,
+            description :1,
+            category: 1,
+            productDetails :1
+          },
+        },
+      ];
+      response = await paginationAggregate(productModel, $aggregate, $extra);
+
+
+      response.status = true;
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = productService;

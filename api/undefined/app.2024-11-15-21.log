@@ -284,3 +284,8 @@
 {"@timestamp":"2024-11-15 21:52:28","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-11-15 21:52:28"}
 {"@timestamp":"2024-11-15 21:52:28","level":"info","message":"✌️ Express loaded","timestamp":"2024-11-15 21:52:28"}
 {"@timestamp":"2024-11-15 21:52:28","level":"info","message":"Database Connected","timestamp":"2024-11-15 21:52:28"}
+{"@timestamp":"2024-11-15 21:59:17","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-11-15 21:59:17"}
+{"@timestamp":"2024-11-15 21:59:17","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-11-15 21:59:17"}
+{"@timestamp":"2024-11-15 21:59:17","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-11-15 21:59:17"}
+{"@timestamp":"2024-11-15 21:59:17","level":"info","message":"✌️ Express loaded","timestamp":"2024-11-15 21:59:17"}
+{"@timestamp":"2024-11-15 21:59:17","level":"info","message":"Database Connected","timestamp":"2024-11-15 21:59:17"}
