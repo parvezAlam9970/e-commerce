@@ -101,6 +101,47 @@ class CategoryService {
     }
   }
 
+
+
+
+  static async listFront(query = {}) {
+    const $extra = { page: query.page, limit: query.limit, isAll: query.isAll };
+    let response = { data: [], extra: { ...$extra }, status: false };
+  
+    try {
+      const search = {
+        parentId: { $exists: false }, 
+        isDeleted: false,
+      };
+      
+      // Apply additional search filters if needed
+      clearSearch(search);
+  
+      const $aggregate = [
+        { $match: search },
+        { $sort: { _id: -1 } },
+        {
+          $lookup: {
+            from: "categories", // Replace with your actual collection name
+            localField: "_id",
+            foreignField: "parentId",
+            as: "children",
+          },
+        },
+       
+
+      ];
+  
+      response = await paginationAggregate(categoryModel, $aggregate, $extra);
+  
+      response.status = true;
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  }
+  
+
   static async buildNestedStructure(parentId) {
     const search = {
       parentId: parentId ? Types.ObjectId(parentId) : "",
