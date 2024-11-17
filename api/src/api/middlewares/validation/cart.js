@@ -9,6 +9,10 @@ const validations = {
       .notEmpty()
       .withMessage("Please enter Product ID"),
 
+      check("productVarientId")
+      .notEmpty()
+      .withMessage("Please enter Product Varient ID"),
+
       
     check("quantity")
     .notEmpty()

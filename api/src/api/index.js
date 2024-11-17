@@ -38,7 +38,7 @@ const userRoute = require("./modules/front/user/route");
 const categoryRouteFront = require("./modules/front/category/route");
 
 const productRouteFront = require("./modules/front/product/route");
-// const cartRoute = require("./modules/front/cart/route");
+const cartRoute = require("./modules/front/cart/route");
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +124,8 @@ const api = (app) => {
 
   app.use("/product", productRouteFront);
   app.use("/category", categoryRouteFront);
+  app.use("/cart", validateTokenFront, cartRoute);
+
 
   /*
     |--------------------------------------------------------------------------
