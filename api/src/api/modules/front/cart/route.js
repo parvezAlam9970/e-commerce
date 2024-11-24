@@ -7,8 +7,10 @@ const validations =  require("../../../middlewares/validation/cart")
 
 
 
-router.post('/save',  validations.cartSaveValidation ,  controller.save);
+router.post('/save',  validations.cartSaveValidation , validations.inventoryValidation ,  controller.save);
 router.get('/list',  controller.list);
+router.get('/calculate-price',  controller.calculatePrice);
+
 
 
 

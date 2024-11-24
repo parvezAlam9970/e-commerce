@@ -12,7 +12,6 @@ class cartServices {
 
     const response = { data: {}, status: false };
     try {
-      console.log(data);
       const docData =
         (await cartModel.findOne({
           $and: [{ userId }, { productId }, { productVarientId }],
@@ -42,7 +41,6 @@ class cartServices {
         // isDeleted: false,
         userId: query.userId ? Types.ObjectId(query.userId) : "",
       };
-      console.log(search);
 
       const $aggregate = [
         {
@@ -137,13 +135,48 @@ class cartServices {
       ];
 
       response = await paginationAggregate(cartModel, $aggregate, $extra);
-      console.log(response);
       response.status = true;
       return response;
     } catch (error) {
       throw error;
     }
   }
+
+
+
+  static async calculatePrice(data) {
+
+    let response = { data: {}, status: false };
+
+    try {
+      
+      let priceObj = {basePrice:0, price: 0, subTotal: 0, shippingCharge: 100, finalPrice: 0};
+      let cartData = (await this.listFront({ userId: data.userId }));
+      
+      if(cartData.data){
+        cartData.data.forEach(item => {
+          priceObj.basePrice += item.price * item.quantity;
+          priceObj.price += item.discountPrice * item.quantity;
+          priceObj.subTotal += item.discountPrice * item.quantity;
+        });
+      }
+
+
+
+      if(priceObj.shippingCharge > 0){
+        priceObj.finalPrice = priceObj.subTotal + priceObj.shippingCharge;
+      }
+
+
+      response.status = true;
+      return priceObj;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  
 }
 
 module.exports = cartServices;
