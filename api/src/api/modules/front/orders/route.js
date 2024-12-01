@@ -6,6 +6,8 @@ const router = Router({ mergeParams: true });
 
 
 router.post("/create-session-booking",  controller.createSessionBooking);
+router.post("/payment-success",  controller.makePaymentSuuccess);
+
 
 
 

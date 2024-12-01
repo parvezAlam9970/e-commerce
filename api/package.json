@@ -55,6 +55,7 @@
     "referral-code-generator": "^1.0.8",
     "slug": "^8.2.2",
     "socket.io": "^4.5.1",
+    "stripe": "^17.4.0",
     "web-push": "^3.6.6",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.2"

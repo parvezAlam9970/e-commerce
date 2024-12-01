@@ -16,6 +16,13 @@ const config = {
   localUploadBaseUrl: function () {
     return `${process.env.LOCAL_UPLOAD_SERVER_IP_ADD}`;
   },
+
+  Stripe : { 
+    public_key :"pk_test_51Mxq1HSFPbEeNKVZq9FtiUtC24tYkyUzcO4J8irPmusSd8Mg5aYvZok12IOg5lMtR3u2hKGpSfpF9mIWu9qoGZcP00gY46mpQL" , 
+    secret_key  : "sk_test_51Mxq1HSFPbEeNKVZ2mEJCDQs0T9AoySCZNjuAxrdxO5t82h5UFoF9BoGSYaeqQj93Bi9O6vJVt4bMUIEkNN0joFG00gmyGgihN"
+  } ,
+
+
   otpLoginExpDuration: 100000000,
   database: {
     host: process.env.DB_HOSTNAME,

@@ -1,0 +1,15 @@
+{"@timestamp":"2024-11-30 17:57:50","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-11-30 17:57:50"}
+{"@timestamp":"2024-11-30 17:57:50","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-11-30 17:57:50"}
+{"@timestamp":"2024-11-30 17:57:50","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-11-30 17:57:50"}
+{"@timestamp":"2024-11-30 17:57:50","level":"info","message":"✌️ Express loaded","timestamp":"2024-11-30 17:57:50"}
+{"@timestamp":"2024-11-30 17:57:51","level":"info","message":"Database Connected","timestamp":"2024-11-30 17:57:51"}
+{"@timestamp":"2024-11-30 17:59:20","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-11-30 17:59:20"}
+{"@timestamp":"2024-11-30 17:59:20","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-11-30 17:59:20"}
+{"@timestamp":"2024-11-30 17:59:20","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-11-30 17:59:20"}
+{"@timestamp":"2024-11-30 17:59:20","level":"info","message":"✌️ Express loaded","timestamp":"2024-11-30 17:59:20"}
+{"@timestamp":"2024-11-30 17:59:20","level":"info","message":"Database Connected","timestamp":"2024-11-30 17:59:20"}
+{"@timestamp":"2024-11-30 17:59:26","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-11-30 17:59:26"}
+{"@timestamp":"2024-11-30 17:59:26","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-11-30 17:59:26"}
+{"@timestamp":"2024-11-30 17:59:26","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-11-30 17:59:26"}
+{"@timestamp":"2024-11-30 17:59:26","level":"info","message":"✌️ Express loaded","timestamp":"2024-11-30 17:59:26"}
+{"@timestamp":"2024-11-30 17:59:26","level":"info","message":"Database Connected","timestamp":"2024-11-30 17:59:26"}

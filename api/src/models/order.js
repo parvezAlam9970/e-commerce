@@ -1,9 +1,9 @@
-const { Schema, model, type } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const orderSchema = new Schema(
   {
     userId: {
-      type: type.ObjectId,
+      type: Types.ObjectId,
       ref: "user",
     },
     
@@ -15,7 +15,7 @@ const orderSchema = new Schema(
     orderId: {
       type: String,
     },
-    razorpayPaymentId: {
+    stripePaymentId: {
       type: String,
     },
 

@@ -1,0 +1,27 @@
+{"@timestamp":"2024-12-01 11:54:16","level":"info","message":"Database Disconnected","timestamp":"2024-12-01 11:54:16"}
+{"@timestamp":"2024-12-01 11:54:26","level":"info","message":"Database Connected","timestamp":"2024-12-01 11:54:26"}
+{"@timestamp":"2024-12-01 11:55:19","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-12-01 11:55:19"}
+{"@timestamp":"2024-12-01 11:55:19","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-12-01 11:55:19"}
+{"@timestamp":"2024-12-01 11:55:19","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-12-01 11:55:19"}
+{"@timestamp":"2024-12-01 11:55:19","level":"info","message":"✌️ Express loaded","timestamp":"2024-12-01 11:55:19"}
+{"@timestamp":"2024-12-01 11:55:20","level":"info","message":"Database Connected","timestamp":"2024-12-01 11:55:20"}
+{"@timestamp":"2024-12-01 11:55:29","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-12-01 11:55:29"}
+{"@timestamp":"2024-12-01 11:55:29","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-12-01 11:55:29"}
+{"@timestamp":"2024-12-01 11:55:29","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-12-01 11:55:29"}
+{"@timestamp":"2024-12-01 11:55:29","level":"info","message":"✌️ Express loaded","timestamp":"2024-12-01 11:55:29"}
+{"@timestamp":"2024-12-01 11:55:30","level":"info","message":"Database Connected","timestamp":"2024-12-01 11:55:30"}
+{"@timestamp":"2024-12-01 11:55:38","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-12-01 11:55:38"}
+{"@timestamp":"2024-12-01 11:55:38","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-12-01 11:55:38"}
+{"@timestamp":"2024-12-01 11:55:38","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-12-01 11:55:38"}
+{"@timestamp":"2024-12-01 11:55:38","level":"info","message":"✌️ Express loaded","timestamp":"2024-12-01 11:55:38"}
+{"@timestamp":"2024-12-01 11:55:39","level":"info","message":"Database Connected","timestamp":"2024-12-01 11:55:39"}
+{"@timestamp":"2024-12-01 11:56:37","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-12-01 11:56:37"}
+{"@timestamp":"2024-12-01 11:56:37","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-12-01 11:56:37"}
+{"@timestamp":"2024-12-01 11:56:37","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-12-01 11:56:37"}
+{"@timestamp":"2024-12-01 11:56:37","level":"info","message":"✌️ Express loaded","timestamp":"2024-12-01 11:56:37"}
+{"@timestamp":"2024-12-01 11:56:38","level":"info","message":"Database Connected","timestamp":"2024-12-01 11:56:38"}
+{"@timestamp":"2024-12-01 11:56:43","level":"info","message":"\n\t\t\t\t\t################################################\n\t\t\t\t\t🛡️  Server listening on port: 5520 🛡️\n\t\t\t\t\t################################################\n\t\t\t\t","timestamp":"2024-12-01 11:56:43"}
+{"@timestamp":"2024-12-01 11:56:43","level":"info","message":"✌️ DB loaded and connected!","timestamp":"2024-12-01 11:56:43"}
+{"@timestamp":"2024-12-01 11:56:43","level":"info","message":"✌️ Scheduler Running","timestamp":"2024-12-01 11:56:43"}
+{"@timestamp":"2024-12-01 11:56:43","level":"info","message":"✌️ Express loaded","timestamp":"2024-12-01 11:56:43"}
+{"@timestamp":"2024-12-01 11:56:44","level":"info","message":"Database Connected","timestamp":"2024-12-01 11:56:44"}

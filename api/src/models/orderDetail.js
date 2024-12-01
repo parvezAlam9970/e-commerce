@@ -1,9 +1,9 @@
-const { Schema, model, type } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const orderDetailSchema = new Schema(
   {
     orderId: {
-      type: type.ObjectId,
+      type: Types.ObjectId,
       ref: "order",
     },
     userId: {
@@ -13,11 +13,11 @@ const orderDetailSchema = new Schema(
     cart: [
       {
         productId: {
-          type: type.ObjectId,
+          type: Types.ObjectId,
           ref: "product",
         },
         productVarientId: {
-          type: type.ObjectId,
+          type: Types.ObjectId,
           ref: "productVarient",
         },
         quantity: {
@@ -35,15 +35,12 @@ const orderDetailSchema = new Schema(
       required: true,
     },
 
-    transactionStatus: {
-      type: String,
-      enum: ["CLEARED", "NOT CLEARED"],
-      default: "NOT CLEARED",
-    },
-
+   
     paymentStatus: {
       type: String,
-      enum: ["INITIATED", "PAID", "FAIL"],
+      enum: ["PAID", "FAIL" , "PENDING"],
+      default: "FAIL"
+
     },
   },
   { timestamps: true }
