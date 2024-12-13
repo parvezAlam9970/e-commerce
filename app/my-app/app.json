@@ -7,6 +7,9 @@
     "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "plugins": [
+      "expo-asset"
+    ],
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",

@@ -10,6 +10,7 @@ import { MdDashboard } from "react-icons/md";
 import Category from '../pages/category/category';
 import ModelAndBrand from '../pages/model&Brand/ModelAndBrand';
 import Product from '../pages/product/Product';
+import Orders from '../pages/order/Orders';
 // import CodeSnippets from '../pages/CodeSnippets/CodeSnippets';
 
 
@@ -36,6 +37,13 @@ const routes = [
     {
         title: 'Product', icon: CalendarOutlined, url: '/product', component : Product
     },
+
+
+    
+    {
+        title: 'Orders', icon: CalendarOutlined, url: '/order', component : Orders
+    },
+ 
  
     
 
