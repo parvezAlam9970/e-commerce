@@ -7,11 +7,23 @@ import { Menu, Search, ShoppingCart } from "lucide-react-native";
 import { Strong } from "@expo/html-elements";
 import { Heading } from "@/components/ui/heading";
 import { Input, InputField } from "@/components/ui/input";
+import Carousel from "@/components/home/Carousel";
+import CategoryList from "@/components/home/CategoryList";
+import MobileAccessories from "@/components/home/MobileAccessories";
+import { ScrollView } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import LaptopAccessories from "@/components/home/LaptopAccessories";
 
 const HomeScreen = () => {
   return (
-    <View className="bg-white ">
-      <View className="bg-[#FF8765] p-4 rounded-b-[20px] h-[250px]">
+    <SafeAreaProvider>
+
+    <ScrollView className="bg-white "
+    contentContainerStyle={{ flexGrow: 1 }} // Ensures scrolling works properly
+
+    
+    >
+      <View className="bg-[#FF8765] relative p-4 rounded-b-[20px] h-[250px]">
         <View className="flex justify-between flex-row w-full">
           <Pressable className="flex-row flex gap-2">
             <Icon as={Menu} className="text-white text-[20px] w-8 h-8" />
@@ -44,8 +56,22 @@ const HomeScreen = () => {
             className="text-white border-none"
           />
         </Input>
+        <View className="mt-4 mx-auto w-full">
+          <Carousel />
+        </View>
+        
+
       </View>
-    </View>
+      <View className="p-4">
+
+      <CategoryList/>
+        <MobileAccessories/>
+        <LaptopAccessories/>
+      </View>
+    </ScrollView>
+</SafeAreaProvider>
+
+
   );
 };
 

@@ -46,7 +46,7 @@ const LoginScreen = () => {
         <View>
           <Text size="xl">
             Create an Account ?{" "}
-            <Link href={"/signUp/signUpScreen"}>
+            <Link href={"/auth/signUpScreen"}>
               <Text size="xl" underline bold>
                 Sign Up
               </Text>
