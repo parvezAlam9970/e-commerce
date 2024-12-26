@@ -1,10 +1,8 @@
-import { Stack, Tabs, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import "/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import LoadingScreen from "@/components/custom/LoadingScreen";
-import { Home, ShoppingCart, User, List } from "lucide-react-native";
-import { Icon } from "@/components/ui/icon";
 
 const RootLayout = () => {
   const router = useRouter();
@@ -14,94 +12,55 @@ const RootLayout = () => {
   // Simulate login check
   useEffect(() => {
     setTimeout(() => {
-      const userLoggedIn = true; // Replace with actual login check logic
+      const userLoggedIn = true; // Replace with real login check logic
       setIsLogged(userLoggedIn);
-      setIsLoading(false); // Stop loading after determining login status
-    }, 1000); // Simulated delay
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
   useEffect(() => {
-    if (isLogged !== null && !isLogged) {
-      // Redirect to login screen if not logged in
-      router.replace("/auth/LoginScreen");
+    if (isLogged !== null) {
+      if (isLogged) {
+        router.replace("/home/HomeScreen"); // Redirect logged-in users to HomeScreen
+      } else {
+        router.replace("/auth/LoginScreen"); // Redirect unauthenticated users to LoginScreen
+      }
     }
   }, [isLogged, router]);
 
   if (isLoading) {
-    return <LoadingScreen />; // Show loading screen while checking login status
+    return <LoadingScreen />;
   }
 
   return (
     <GluestackUIProvider>
-      {isLogged ? (
-        // Tabs for logged-in users
-        <Tabs
-          screenOptions={{
-            tabBarStyle: { backgroundColor: "#fff" },
-            tabBarActiveTintColor: "#FF8765",
-            tabBarInactiveTintColor: "#aaa",
+      <Stack
+        screenOptions={{
+          headerShown: false, // Hide the header for all screens in the Tabs
+        }}
+      >
+        <Stack.Screen
+          name="home/HomeScreen"
+          options={{
+            headerShown: false, // Hide only the header for HomeScreen
           }}
-        >
-          {/* Home Screen */}
-          <Tabs.Screen
-            name="index"
-            options={{
-              tabBarLabel: "Home",
-              tabBarIcon: ({ color }) => (
-                <Icon as={Home} className={`text-[${color}]`} />
-              ),
-              headerShown: false,
-            }}
-          />
-          {/* Categories */}
-          <Tabs.Screen
-            name="categories/CategoryScreen"
-            options={{
-              tabBarLabel: "Categories",
-              tabBarIcon: ({ color }) => (
-                <Icon as={List} className={`text-[${color}]`} />
-              ),
-            }}
-          />
-          {/* Orders */}
-          <Tabs.Screen
-            name="orders/OrderScreen"
-            options={{
-              tabBarLabel: "Orders",
-              tabBarIcon: ({ color }) => (
-                <Icon as={ShoppingCart} className={`text-[${color}]`} />
-              ),
-            }}
-          />
-          {/* Account */}
-          <Tabs.Screen
-            name="profile/ProfileScreen"
-            options={{
-              tabBarLabel: "Account",
-              tabBarIcon: ({ color }) => (
-                <Icon as={User} className={`text-[${color}]`} />
-              ),
-            }}
-          />
-        </Tabs>
-      ) : (
-        // Stack navigation for unauthenticated users (Login & SignUp)
-        <Stack>
-          <Stack.Screen
-            name="auth/LoginScreen"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="auth/SignUpScreen"
-            options={{
-              title: "Sign Up",
-              headerShown: false,
-            }}
-          />
-        </Stack>
-      )}
+        />
+        {/* Login Screen */}
+        <Stack.Screen
+          name="auth/LoginScreen"
+          options={{
+            headerShown: false,
+          }}
+        />
+        {/* Sign Up Screen */}
+        <Stack.Screen
+          name="auth/SignUpScreen"
+          options={{
+            title: "Sign Up",
+            headerShown: true,
+          }}
+        />
+      </Stack>
     </GluestackUIProvider>
   );
 };
