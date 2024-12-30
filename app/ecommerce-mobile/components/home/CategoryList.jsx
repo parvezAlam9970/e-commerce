@@ -4,6 +4,8 @@ import { Text } from "../ui/text";
 import { ChevronRight } from "lucide-react-native";
 import { Icon } from "@/components/ui/icon";
 import { HStack } from "../ui/hstack";
+import { useNavigation } from "@react-navigation/native"; // Import navigation hook
+
 
 const DATA = [
   { id: "1", title: "First Item" },
@@ -34,13 +36,15 @@ const Item = ({ item }) => (
 );
 
 const CategoryList = () => {
+  const navigation = useNavigation(); // Initialize navigation
+
   return (
     <View>
       <HStack className="w-full flex items-center mt-20 justify-between flex-row">
         <Text className="mt-8" bold size="lg">
           Top Categories
         </Text>
-        <Text className="mt-8 flex flex-row items-center" bold size="sm">
+        <Text onPress={() => navigation.navigate("CategoryScreen")} className="mt-8 flex flex-row items-center" bold size="sm">
           View All
           <Icon as={ChevronRight} className="text-black w-5 h-5 ml-3" />
         </Text>

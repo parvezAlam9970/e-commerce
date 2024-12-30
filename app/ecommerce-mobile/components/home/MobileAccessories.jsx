@@ -38,7 +38,7 @@ const MobileAccessories = () => {
       <FlatList
         horizontal
         data={DATA}
-        renderItem={({ item }) => <CategoryCard item={item} />}
+        renderItem={({ item }) => <Product item={item} />}
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
@@ -47,7 +47,7 @@ const MobileAccessories = () => {
       <FlatList
         horizontal
         data={DATA}
-        renderItem={({ item }) => <CategoryCard item={item} />}
+        renderItem={({ item }) => <Product item={item} />}
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
@@ -59,20 +59,28 @@ const MobileAccessories = () => {
 
 export default MobileAccessories;
 
-function CategoryCard({ item }) {
+function Product({ item }) {
+  // const navi
   return (
-    <View>
-      <View className=" rounded-lg">
-        <View className=" rounded-md bg-[#F2F2F2]  w-[150px] p-2 h-[150px]">
+    <View  className="border-[1px] max-w-[120px] border-gray-200 p-2 px-3 rounded-sm">
+      <View className="  ">
+        <View className="">
           <Image
-            className="w-full h-full"
+            className="w-[100px] h-[120px]"
             source={{
-              uri: "https://rukminim2.flixcart.com/flap/96/96/image/22fddf3c7da4c4f4.png?q=100",
+              uri: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/6/t/4/-original-imah3chxfkqxyzm3.jpeg?q=70",
             }}
           />
         </View>
       </View>
-      <Text size="md">Cables</Text>
+      <Text size="sm"  className="p-0 m-0" >Realme 12 cover, Slicon cover </Text>
+      <View className="flex flex-row gap-x-2">
+      <Text size="sm"  className="" >$599</Text>
+      <Text size="sm"  className="line-through text-gray-400" >$599</Text>
+
+
+      </View>
+
     </View>
   );
 }

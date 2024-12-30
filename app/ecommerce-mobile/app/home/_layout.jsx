@@ -1,13 +1,16 @@
 import { Tabs } from "expo-router";
 import { Home, List, ShoppingCart, User } from "lucide-react-native";
+import { TouchableOpacity } from "react-native";
 
 export default () => {
   return (
     <Tabs
       screenOptions={{
         tabBarLabelStyle: {
-          fontSize: 14,
+          fontSize: 12,
           fontWeight: "semibold",
+          textAlign: "center", // Center align the text
+
         },
         tabBarStyle: {
           borderTopLeftRadius: 20,
@@ -35,6 +38,18 @@ export default () => {
           tabBarLabel: "Categories",
           tabBarIcon: ({ color }) => <List color={color} />,
           headerShown: true,
+          headerTitle: "All Categories", // Set custom title
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => {
+                console.log("Cart Icon Pressed");
+              }}
+              style={{
+                marginRight: 16,
+              }}
+            >
+              <ShoppingCart color="#FF8765" size={24} />
+            </TouchableOpacity>)
         }}
       />
       <Tabs.Screen
