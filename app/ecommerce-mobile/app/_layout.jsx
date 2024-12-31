@@ -52,6 +52,14 @@ const RootLayout = () => {
             headerShown: false,
           }}
         />
+
+        <Stack.Screen
+          name="noTabs/ProductDetail"
+          options={{
+            headerShown: true, 
+    
+          }}
+        />
         {/* Sign Up Screen */}
         <Stack.Screen
           name="auth/SignUpScreen"

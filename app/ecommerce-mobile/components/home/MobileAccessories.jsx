@@ -1,7 +1,8 @@
-import { FlatList, Image, View } from "react-native";
+import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { HStack } from "../ui/hstack";
 import { Text } from "../ui/text";
+import { useNavigation } from "expo-router";
 
 const DATA = [
   { id: "1", title: "Mobile Covers" },
@@ -60,27 +61,27 @@ const MobileAccessories = () => {
 export default MobileAccessories;
 
 function Product({ item }) {
-  // const navi
+  const navigation = useNavigation()
+  const handlePress = () => {
+    navigation.navigate('noTabs/ProductDetail', { productId: "Product Name" });
+  };
   return (
-    <View  className="border-[1px] max-w-[120px] border-gray-200 p-2 px-3 rounded-sm">
-      <View className="  ">
-        <View className="">
+    <TouchableOpacity onPress={handlePress}>
+      <View className="border-[1px] max-w-[120px] border-gray-200 p-2 px-3 rounded-sm">
+        <View>
           <Image
             className="w-[100px] h-[120px]"
             source={{
-              uri: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/6/t/4/-original-imah3chxfkqxyzm3.jpeg?q=70",
+              uri: item.imageUrl || "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/6/t/4/-original-imah3chxfkqxyzm3.jpeg?q=70",
             }}
           />
         </View>
+        <Text size="sm" className="p-0 m-0">{item.name}</Text>
+        <View className="flex flex-row gap-x-2">
+          <Text size="sm" className="">{`$${item.price}`}</Text>
+          <Text size="sm" className="line-through text-gray-400">{`$${item.originalPrice}`}</Text>
+        </View>
       </View>
-      <Text size="sm"  className="p-0 m-0" >Realme 12 cover, Slicon cover </Text>
-      <View className="flex flex-row gap-x-2">
-      <Text size="sm"  className="" >$599</Text>
-      <Text size="sm"  className="line-through text-gray-400" >$599</Text>
-
-
-      </View>
-
-    </View>
+    </TouchableOpacity>
   );
 }
