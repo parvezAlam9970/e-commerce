@@ -2,7 +2,7 @@ import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { HStack } from "../ui/hstack";
 import { Text } from "../ui/text";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 
 const DATA = [
   { id: "1", title: "Mobile Covers" },
@@ -61,9 +61,9 @@ const MobileAccessories = () => {
 export default MobileAccessories;
 
 function Product({ item }) {
-  const navigation = useNavigation()
+  const router = useRouter();
   const handlePress = () => {
-    navigation.navigate('noTabs/ProductDetail', { productId: "Product Name" });
+    router.push("/noTabs/ProductDetail?productId=ProductName");
   };
   return (
     <TouchableOpacity onPress={handlePress}>
