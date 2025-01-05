@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import "/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import LoadingScreen from "@/components/custom/LoadingScreen";
+import { TouchableOpacity } from "react-native";
+import { ShoppingCart } from "lucide-react-native";
 
 const RootLayout = () => {
   const router = useRouter();
@@ -55,10 +57,22 @@ const RootLayout = () => {
 
         <Stack.Screen
           name="noTabs/ProductDetail"
-          options={{
-            headerShown: true, 
-    
-          }}
+          options={({ route }) => ({
+            headerShown: true,
+            headerTitle: route.params?.productId || "Product", // Set the product name as the header title
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  console.log("Cart Icon Pressed");
+                }}
+                style={{
+                  marginRight: 16,
+                }}
+              >
+                <ShoppingCart color="#000" size={24} />
+              </TouchableOpacity>
+            ),
+          })}
         />
         {/* Sign Up Screen */}
         <Stack.Screen

@@ -1,9 +1,11 @@
-import { FlatList, Image, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, TouchableOpacity, View, Dimensions } from "react-native";
 import React from "react";
 import { HStack } from "../ui/hstack";
 import { Text } from "../ui/text";
 import { useNavigation, useRouter } from "expo-router";
+import ProductCard from "../custom/ProductCard";
 
+// Dummy data
 const DATA = [
   { id: "1", title: "Mobile Covers" },
   { id: "2", title: "Charging Cables" },
@@ -11,22 +13,62 @@ const DATA = [
   { id: "4", title: "Head Phones" },
 ];
 
+const ProductDATA = [
+  { 
+    id: "1", 
+    title: "Mobile Covers", 
+    // imageUrl: "https://example.com/mobile-cover.jpg", 
+    name: "Sleek Mobile Cover", 
+    price: 15.99, 
+    originalPrice: 20.99 
+  },
+  { 
+    id: "2", 
+    title: "Charging Cables", 
+    // imageUrl: "https://example.com/charging-cable.jpg", 
+    name: "Durable Charging Cable", 
+    price: 9.99, 
+    originalPrice: 12.99 
+  },
+  { 
+    id: "3", 
+    title: "Charging Adapters", 
+    // imageUrl: "https://example.com/charging-adapter.jpg", 
+    name: "Fast Charging Adapter", 
+    price: 19.99, 
+    originalPrice: 24.99 
+  },
+  { 
+    id: "4", 
+    title: "Head Phones", 
+    // imageUrl: "https://example.com/headphones.jpg", 
+    name: "Noise Cancelling Headphones", 
+    price: 49.99, 
+    originalPrice: 59.99 
+  },
+];
+
 const Item = ({ item }) => (
-  <View className=" mt-1 bg-[#F2F2F2] rounded-md flex-row p-[6px] items-center mx-2">
-    <Text className="text-semibold" size="sm">
+  <View className="mt-1 bg-[#F2F2F2] rounded-md flex-row p-[6px] items-center mx-2">
+    <Text className="text-semibold" size="md">
       {item?.title}
     </Text>
   </View>
 );
 
 const MobileAccessories = () => {
+  const screenWidth = Dimensions.get("window").width; // Get screen width
+  const cardWidth = screenWidth / 2.5; // Calculate card width for 2.5 cards
+
   return (
     <View>
       <HStack className="w-full flex items-center justify-between flex-row">
-        <Text className="mt-8" bold size="lg">
+        <Text className="mt-8 mb-2" bold size="lg">
           Mobile Accessories
         </Text>
       </HStack>
+
+      {/* Horizontal List for Categories */}
       <FlatList
         horizontal
         data={DATA}
@@ -36,52 +78,39 @@ const MobileAccessories = () => {
         ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
       />
 
-      <FlatList
-        horizontal
-        data={DATA}
-        renderItem={({ item }) => <Product item={item} />}
-        keyExtractor={(item) => item.id}
-        showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
-        className="mt-4"
-      />
-      <FlatList
-        horizontal
-        data={DATA}
-        renderItem={({ item }) => <Product item={item} />}
-        keyExtractor={(item) => item.id}
-        showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
-        className="mt-4"
-      />
+      {/* Horizontal List for Products (2.5 cards visible) */}
+      <View className="mt-4">
+        <FlatList
+          horizontal
+          data={ProductDATA}
+          renderItem={({ item }) => (
+            <View style={{ width: cardWidth }}>
+              <ProductCard item={item} />
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+        />
+      </View>
+
+      {/* Repeat for another row (if needed) */}
+      <View className="mt-4">
+        <FlatList
+          horizontal
+          data={ProductDATA}
+          renderItem={({ item }) => (
+            <View style={{ width: cardWidth }}>
+              <ProductCard item={item} />
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+        />
+      </View>
     </View>
   );
 };
 
 export default MobileAccessories;
-
-function Product({ item }) {
-  const router = useRouter();
-  const handlePress = () => {
-    router.push("/noTabs/ProductDetail?productId=ProductName");
-  };
-  return (
-    <TouchableOpacity onPress={handlePress}>
-      <View className="border-[1px] max-w-[120px] border-gray-200 p-2 px-3 rounded-sm">
-        <View>
-          <Image
-            className="w-[100px] h-[120px]"
-            source={{
-              uri: item.imageUrl || "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/6/t/4/-original-imah3chxfkqxyzm3.jpeg?q=70",
-            }}
-          />
-        </View>
-        <Text size="sm" className="p-0 m-0">{item.name}</Text>
-        <View className="flex flex-row gap-x-2">
-          <Text size="sm" className="">{`$${item.price}`}</Text>
-          <Text size="sm" className="line-through text-gray-400">{`$${item.originalPrice}`}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-}

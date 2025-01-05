@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Image, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 
-const { width } = Dimensions.get("window");
 
 const images = [
   {
@@ -18,6 +17,10 @@ const images = [
   },
   {
     id: "4",
+    uri: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/6/t/4/-original-imah3chxfkqxyzm3.jpeg?q=70",
+  },
+  {
+    id: "5",
     uri: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/6/t/4/-original-imah3chxfkqxyzm3.jpeg?q=70",
   },
 ];

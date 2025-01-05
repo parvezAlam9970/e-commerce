@@ -29,7 +29,7 @@ const Item = ({ item }) => (
         }}
       />
     </View>
-    <Text className="text-[#ff8765] mt-2" size="sm" bold>
+    <Text className="text-[#ff8765] mt-2" size="md" bold>
       {item?.title}
     </Text>
   </View>
