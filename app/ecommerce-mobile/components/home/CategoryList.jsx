@@ -1,10 +1,11 @@
-import { FlatList, Image, View, StyleSheet } from "react-native";
+import { FlatList, Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Text } from "../ui/text";
 import { ChevronRight } from "lucide-react-native";
 import { Icon } from "@/components/ui/icon";
 import { HStack } from "../ui/hstack";
 import { useNavigation } from "@react-navigation/native"; // Import navigation hook
+import { useRouter } from "expo-router";
 
 
 const DATA = [
@@ -16,28 +17,31 @@ const DATA = [
   { id: "6", title: "Sixth Item" },
 ];
 
-const Item = ({ item }) => (
-  <View className="flex items-center mx-2">
-    <View
-      style={styles.shadow_box}
-      className=" rounded-md bg-white  w-[70px] p-2 h-[70px]"
-    >
-      <Image
-        className="w-full h-full"
-        source={{
-          uri: "https://rukminim2.flixcart.com/flap/96/96/image/22fddf3c7da4c4f4.png?q=100",
-        }}
-      />
-    </View>
-    <Text className="text-[#ff8765] mt-2" size="md" bold>
-      {item?.title}
-    </Text>
-  </View>
-);
+;
 
 const CategoryList = () => {
-  const navigation = useNavigation(); // Initialize navigation
+  const navigation = useNavigation();
+  const router = useRouter() // Initialize navigation
 
+
+  const Item = ({ item }) => (
+    <TouchableOpacity className="flex items-center mx-2" onPress={() => router.push("/screens/ProductsList")}>
+      <View
+        style={styles.shadow_box}
+        className=" rounded-md bg-white  w-[70px] p-2 h-[70px]"
+      >
+        <Image
+          className="w-full h-full"
+          source={{
+            uri: "https://rukminim2.flixcart.com/flap/96/96/image/22fddf3c7da4c4f4.png?q=100",
+          }}
+        />
+      </View>
+      <Text className="text-[#ff8765] mt-2" size="md" bold>
+        {item?.title}
+      </Text>
+    </TouchableOpacity>
+  )
   return (
     <View>
       <HStack className="w-full flex items-center mt-20 justify-between flex-row">

@@ -1,8 +1,9 @@
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { Home, List, ShoppingCart, User } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
 export default () => {
+  const router = useRouter()
   return (
     <Tabs
       screenOptions={{
@@ -42,6 +43,7 @@ export default () => {
           headerRight: () => (
             <TouchableOpacity
               onPress={() => {
+                router.push("/screens/CartScreen")
                 console.log("Cart Icon Pressed");
               }}
               style={{

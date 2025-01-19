@@ -6,13 +6,13 @@ import { Text } from '../ui/text';
 const ProductCard = ({ item }) => {
   const router = useRouter();
   const handlePress = () => {
-    router.push("/noTabs/ProductDetail?productId=Men Slim");
+    router.push("/screens/ProductDetail?productId=Men Slim");
   };
 
   return (
     <TouchableOpacity onPress={handlePress}>
       <View className="rounded-sm mb-4">
-        <View className="bg-[#D2D2D2] flex flex-col justify-center items-center rounded-lg p-2  h-[200px]">
+        <View className="bg-gray-100 flex flex-col justify-center items-center rounded-lg p-2  h-[200px]">
           <Image
             className="w-full h-[150px] p-5 "
             source={{

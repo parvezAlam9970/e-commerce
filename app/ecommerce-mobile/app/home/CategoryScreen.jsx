@@ -93,7 +93,7 @@ const CategoryScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState(mainCategories?.[0]?.id);
 const handleNavigate= () => {
   console.log("hkhj")
-  router.push("/noTabs/ProductsList?categoryId=T-Shirts");
+  router.push("/screens/ProductsList?categoryId=T-Shirts");
 
 }
   return (

@@ -5,6 +5,7 @@ import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import LoadingScreen from "@/components/custom/LoadingScreen";
 import { TouchableOpacity } from "react-native";
 import { ShoppingCart } from "lucide-react-native";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context"; // Import SafeAreaView and SafeAreaProvider
 
 const RootLayout = () => {
   const router = useRouter();
@@ -35,40 +36,50 @@ const RootLayout = () => {
   }
 
   return (
-    <GluestackUIProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false, // Hide the header for all screens in the Tabs
-        }}
-      >
-        <Stack.Screen
-          name="home/HomeScreen"
-          options={{
-            headerShown: false, // Hide only the header for HomeScreen
-          }}
-        />
-        {/* Login Screen */}
-        <Stack.Screen
-          name="auth/LoginScreen"
-          options={{
-            headerShown: false,
-          }}
-        />
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <GluestackUIProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false, // Hide the header for all screens in the Tabs
+            }}
+          >
+            <Stack.Screen
+              name="home/HomeScreen"
+              options={{
+                headerShown: false, // Hide only the header for HomeScreen
+              }}
+            />
+            {/* Login Screen */}
+            <Stack.Screen
+              name="auth/LoginScreen"
+              options={{
+                headerShown: false,
+              }}
+            />
 
-        <Stack.Screen name="noTabs/ProductDetail" />
+            <Stack.Screen name="screens/ProductDetail" />
+            <Stack.Screen name="screens/productsList" />
+            <Stack.Screen
+              name="screens/CartScreen"
+              options={{
+                title: "Cart",
+                headerShown: true,
+              }}
+            />
 
-        <Stack.Screen name="noTabs/productsList" />
-
-        {/* Sign Up Screen */}
-        <Stack.Screen
-          name="auth/SignUpScreen"
-          options={{
-            title: "Sign Up",
-            headerShown: true,
-          }}
-        />
-      </Stack>
-    </GluestackUIProvider>
+            {/* Sign Up Screen */}
+            <Stack.Screen
+              name="auth/SignUpScreen"
+              options={{
+                title: "Sign Up",
+                headerShown: true,
+              }}
+            />
+          </Stack>
+        </GluestackUIProvider>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 

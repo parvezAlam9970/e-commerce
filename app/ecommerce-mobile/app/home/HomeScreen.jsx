@@ -13,8 +13,10 @@ import MobileAccessories from "@/components/home/MobileAccessories";
 import { ScrollView } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import LaptopAccessories from "@/components/home/LaptopAccessories";
+import { useRouter } from "expo-router";
 
 const HomeScreen = () => {
+  const router =  useRouter()
   return (
     <SafeAreaProvider>
 
@@ -25,11 +27,11 @@ const HomeScreen = () => {
     >
       <View className="bg-[#FF8765] relative p-4 rounded-b-[20px] h-[250px]">
         <View className="flex justify-between flex-row w-full">
-          <Pressable className="flex-row flex gap-2">
+          <Pressable className="flex-row flex gap-2" >
             <Icon as={Menu} className="text-white text-[20px] w-8 h-8" />
           </Pressable>
 
-          <Pressable className="flex-row gap-2">
+          <Pressable className="flex-row gap-2" onPress={() => router.push("/screens/CartScreen") }>
             <Icon
               as={ShoppingCart}
               className="text-white fill-white text-[20px] w-8 h-8"

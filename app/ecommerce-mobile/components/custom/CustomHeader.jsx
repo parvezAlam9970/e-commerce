@@ -2,8 +2,13 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { ArrowLeft, ShoppingCart } from "lucide-react-native"; // Import icons
 import { Text } from "@/components/ui/text"; // Import your custom Text component
+import { useRouter } from "expo-router";
 
-const CustomHeader = ({ title, onBackPress, onCartPress }) => {
+const CustomHeader = ({ title, onBackPress }) => {
+  const router = useRouter()
+  const onCartPress = () => {
+    router.push("/screens/CartScreen")
+  }
   return (
     <View className="flex flex-row items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
       {/* Back Button */}
