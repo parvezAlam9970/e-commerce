@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ScrollView } from "react-native";
 import ProductImages from "@/components/productDetail/ProductImages";
@@ -9,13 +9,22 @@ import ProductVariant from "@/components/productDetail/ProductVariant";
 import ProductButtons from "@/components/productDetail/ProductButtons";
 import { Text } from "@/components/ui/text";
 import RelatedProduct from "@/components/productDetail/RelatedProduct";
+import CustomHeader from "@/components/custom/CustomHeader";
 
 const ProductDetail = () => {
-  const { productId } = useLocalSearchParams(); // Correct way to get search params
-console.log(productId , " pppppppp")
+  const router = useRouter();
+  
+    const handleBackPress = () => {
+      router.back(); 
+    };
+  
+  const { productId } = useLocalSearchParams(); 
   return (
-    <SafeAreaProvider>
       <ScrollView className="bg-white w-full">
+         <CustomHeader
+        title={productId}
+        onBackPress={handleBackPress} 
+      />
       <ProductImages />
         <View className="px-4 w-full">  
           <ProductDescription />
@@ -32,7 +41,6 @@ console.log(productId , " pppppppp")
           <RelatedProduct/>
         </View>
       </ScrollView>
-    </SafeAreaProvider>
   );
 };
 

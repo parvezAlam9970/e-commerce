@@ -11,10 +11,10 @@ const ProductCard = ({ item }) => {
 
   return (
     <TouchableOpacity onPress={handlePress}>
-      <View className="rounded-sm">
-        <View className="bg-[#D2D2D2] flex flex-col justify-center items-center rounded-lg p-2 aspect-square">
+      <View className="rounded-sm mb-4">
+        <View className="bg-[#D2D2D2] flex flex-col justify-center items-center rounded-lg p-2  h-[200px]">
           <Image
-            className="w-full h-full rounded-lg"
+            className="w-full h-[150px] p-5 "
             source={{
               uri:
                 item.imageUrl ||
@@ -24,14 +24,14 @@ const ProductCard = ({ item }) => {
           />
         </View>
 
-        <Text size="md" className="mt-3" numberOfLines={1}>
+        <Text size="lg" className="mt-3 font-medium" numberOfLines={1}>
           {item.name}
         </Text>
         <View className="flex flex-row gap-x-2">
-          <Text size="md" className="">
+          <Text size="lg" className=" font-semibold">
             ${item.price}
           </Text>
-          <Text size="md" className="line-through text-gray-400">
+          <Text size="lg" className="line-through text-gray-400">
             ${item.originalPrice}
           </Text>
         </View>

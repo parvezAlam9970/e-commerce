@@ -4,7 +4,7 @@ import { Text } from '../ui/text';
 import ProductCard from '../custom/ProductCard';
 
 // Dummy data for related products
-const RELATED_PRODUCTS = [
+export const RELATED_PRODUCTS = [
   {
     id: '1',
     name: 'Sleek Mobile Cover',
@@ -28,6 +28,20 @@ const RELATED_PRODUCTS = [
   },
   {
     id: '4',
+    name: 'Noise Cancelling Headphones',
+    price: 49.99,
+    originalPrice: 59.99,
+    // imageUrl: 'https://example.com/headphones.jpg',
+  },
+  {
+    id: '5',
+    name: 'Fast Charging Adapter',
+    price: 19.99,
+    originalPrice: 24.99,
+    // imageUrl: 'https://example.com/charging-adapter.jpg',
+  },
+  {
+    id: '6',
     name: 'Noise Cancelling Headphones',
     price: 49.99,
     originalPrice: 59.99,

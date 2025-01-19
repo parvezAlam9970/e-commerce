@@ -1,6 +1,7 @@
 import { View, FlatList, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import { Text } from "@/components/ui/text";
+import { useRouter } from "expo-router";
 
 const mainCategories = [
   {
@@ -33,6 +34,42 @@ const mainCategories = [
     image:
       "https://rukminim2.flixcart.com/flap/80/80/image/dff3f7adcf3a90c6.png?q=100",
   },
+  {
+    id: 6,
+    name: "Electronics",
+    image:
+      "https://rukminim2.flixcart.com/flap/80/80/image/69c6589653afdb9a.png?q=100",
+  },
+  {
+    id: 7,
+    name: "Home Appliances",
+    image:
+      "https://rukminim2.flixcart.com/fk-p-flap/80/80/image/0139228b2f7eb413.jpg?q=100",
+  },
+  {
+    id: 8,
+    name: "Toys",
+    image:
+      "https://rukminim2.flixcart.com/flap/80/80/image/dff3f7adcf3a90c6.png?q=100",
+  },
+  {
+    id: 9,
+    name: "Electronics",
+    image:
+      "https://rukminim2.flixcart.com/flap/80/80/image/69c6589653afdb9a.png?q=100",
+  },
+  {
+    id: 10,
+    name: "Home Appliances",
+    image:
+      "https://rukminim2.flixcart.com/fk-p-flap/80/80/image/0139228b2f7eb413.jpg?q=100",
+  },
+  {
+    id: 11,
+    name: "Toys",
+    image:
+      "https://rukminim2.flixcart.com/flap/80/80/image/dff3f7adcf3a90c6.png?q=100",
+  },
 ];
 
 const subCategories = {
@@ -51,8 +88,14 @@ const subCategories = {
 };
 
 const CategoryScreen = () => {
+    const router = useRouter();
+  
   const [selectedCategory, setSelectedCategory] = useState(mainCategories?.[0]?.id);
+const handleNavigate= () => {
+  console.log("hkhj")
+  router.push("/noTabs/ProductsList?categoryId=T-Shirts");
 
+}
   return (
     <View className="flex-1 flex-row bg-white">
       <View className="w-1/4 bg-gray-100">
@@ -92,7 +135,9 @@ const CategoryScreen = () => {
 
         <View className="flex flex-wrap justify-between flex-row">
           {subCategories[selectedCategory]?.map((sub, index) => (
-            <View className="">
+                <TouchableOpacity onPress={handleNavigate}>
+            
+            <View  className="">
               <Image
                 source={{
                   uri: "https://rukminim2.flixcart.com/flap/80/80/image/dff3f7adcf3a90c6.png?q=100",
@@ -108,6 +153,8 @@ const CategoryScreen = () => {
                 {sub}
               </Text>
             </View>
+                </TouchableOpacity>
+            
           ))}
         </View>
       </View>

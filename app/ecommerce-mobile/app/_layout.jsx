@@ -55,25 +55,10 @@ const RootLayout = () => {
           }}
         />
 
-        <Stack.Screen
-          name="noTabs/ProductDetail"
-          options={({ route }) => ({
-            headerShown: true,
-            headerTitle: route.params?.productId || "Product", // Set the product name as the header title
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  console.log("Cart Icon Pressed");
-                }}
-                style={{
-                  marginRight: 16,
-                }}
-              >
-                <ShoppingCart color="#000" size={24} />
-              </TouchableOpacity>
-            ),
-          })}
-        />
+        <Stack.Screen name="noTabs/ProductDetail" />
+
+        <Stack.Screen name="noTabs/productsList" />
+
         {/* Sign Up Screen */}
         <Stack.Screen
           name="auth/SignUpScreen"
