@@ -67,6 +67,13 @@ const RootLayout = () => {
                 headerShown: true,
               }}
             />
+             <Stack.Screen
+              name="screens/CheckOutScreen"
+              options={{
+                title: "Checkout",
+                headerShown: true,
+              }}
+            />
 
             {/* Sign Up Screen */}
             <Stack.Screen

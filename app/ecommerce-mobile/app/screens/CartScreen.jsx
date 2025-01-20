@@ -2,8 +2,10 @@ import { ScrollView, View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { Text } from "@/components/ui/text";
 import { Trash2 } from "lucide-react-native"; // Import a delete icon
+import { useRouter } from "expo-router";
 
 const CartScreen = () => {
+  const router = useRouter();
   // Sample cart data
   const cartItems = [
     {
@@ -82,7 +84,12 @@ const CartScreen = () => {
 
   // Handle quantity change
   const handleQuantityChange = (itemId, newQuantity) => {
-    console.log("Update quantity for item ID:", itemId, "New quantity:", newQuantity);
+    console.log(
+      "Update quantity for item ID:",
+      itemId,
+      "New quantity:",
+      newQuantity
+    );
     // Add logic to update the quantity in the cart
   };
 
@@ -91,13 +98,19 @@ const CartScreen = () => {
       {/* Scrollable Cart Items */}
       <ScrollView className="bg-gray-100 p-4 mb-[50px]">
         <View className="flex-row justify-between items-center mb-4">
-          <Text className="text-lg font-bold">Items ({cartItems.length})</Text>
-          <Text className="text-lg font-bold">Total ₹{totalPrice}</Text>
+          <Text className="text-xl font-bold">Items ({cartItems.length})</Text>
+          <Text size="2xl" bold className="">
+              Total :
+            ₹500
+          </Text>
         </View>
 
         {/* Cart Items */}
         {cartItems.map((item) => (
-          <View key={item.id} className="bg-white p-4 rounded-lg shadow-sm mb-4">
+          <View
+            key={item.id}
+            className="bg-white p-4 rounded-lg shadow-sm mb-4"
+          >
             {/* Delete Button (Top-Right Corner) */}
             <TouchableOpacity
               className="absolute top-2 right-2 p-2"
@@ -154,11 +167,14 @@ const CartScreen = () => {
         <View className="flex-row">
           {/* Total Price (50% width) */}
           <View className="flex-1 p-4 justify-center">
-            <Text className="text-lg font-bold">Total ₹{totalPrice}</Text>
+            <Text className="text-2xl font-bold">Total : ₹{totalPrice}</Text>
           </View>
 
           {/* Place Order Button (50% width) */}
-          <TouchableOpacity className="flex-1 bg-[#2B2B2B] justify-center items-center ">
+          <TouchableOpacity
+            onPress={() => router.push("/screens/CheckOutScreen")}
+            className="flex-1 bg-[#2B2B2B] justify-center items-center "
+          >
             <Text className="text-white text-lg font-bold">Place Order</Text>
           </TouchableOpacity>
         </View>
