@@ -75,6 +75,14 @@ const RootLayout = () => {
               }}
             />
 
+<Stack.Screen
+              name="screens/OrderHistory"
+              options={{
+                title: "OrderHistory",
+                headerShown: false,
+              }}
+            />
+
             {/* Sign Up Screen */}
             <Stack.Screen
               name="auth/SignUpScreen"

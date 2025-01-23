@@ -57,9 +57,22 @@ export default () => {
       <Tabs.Screen
         name="OrderScreen"
         options={{
-          tabBarLabel: "Orders",
-          tabBarIcon: ({ color }) => <ShoppingCart color={color} />,
+          tabBarLabel: "My Orders",
+          tabBarIcon: ({ color }) => <List color={color} />,
           headerShown: true,
+          headerTitle: "My Orders", // Set custom title
+          // headerRight: () => (
+          //   <TouchableOpacity
+          //     onPress={() => {
+          //       router.push("/screens/CartScreen")
+          //       console.log("Cart Icon Pressed");
+          //     }}
+          //     style={{
+          //       marginRight: 16,
+          //     }}
+          //   >
+          //     <ShoppingCart color="#FF8765" size={24} />
+          //   </TouchableOpacity>)
         }}
       />
       <Tabs.Screen
